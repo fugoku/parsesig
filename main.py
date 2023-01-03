@@ -55,8 +55,6 @@ async def forwarder(event):
         count += 1
       
         print(cht, count)
-        valid = True
-
         if valid:
             try:
                 output_channel = await client.send_message(cht, text, file=msg_file, reply_to=ref)
