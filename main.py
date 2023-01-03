@@ -73,4 +73,10 @@ async def wakeup(event):
     print('Active...')
 
 client.start()
-client.run_until_disconnected()
+
+
+try:
+    print('starting...')
+    client.run_until_disconnected()
+except:
+    print('stopping...')
