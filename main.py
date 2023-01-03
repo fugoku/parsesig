@@ -55,6 +55,7 @@ async def forwarder(event):
         count += 1
       
         print(cht, count)
+        valid = True
 
         if valid:
             try:
