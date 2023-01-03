@@ -72,5 +72,11 @@ async def forwarder(event):
 async def wakeup(event):
     print('Active...')
 
-client.start()
-client.run_until_disconnected()
+
+
+try:
+    client.start()
+    print('starting...')
+    client.run_until_disconnected()
+except:
+    print('stopping...')
