@@ -11,6 +11,7 @@ import logging
 from datetime import datetime
 import sentry_sdk
 import re
+from text_parser import pasig
 sentry_sdk.init(
     dsn=sentry_env,
     traces_sample_rate=1.0
@@ -35,7 +36,7 @@ async def forwarder(event):
         message_id = event.message.id
         reply_msg = event.message.reply_to_msg_id
 
-        # cleaned_text = parse_message(text)
+        # cleaned_text = pasig(text)
         cleaned_text = text
         valid = bool(cleaned_text)
         count = 0
