@@ -12,6 +12,10 @@ from datetime import datetime
 import sentry_sdk
 import re
 from text_parser import pasig
+from text_parser import emanuelefilter, transform_text
+
+
+
 sentry_sdk.init(
     dsn=sentry_env,
     traces_sample_rate=1.0
@@ -37,8 +41,11 @@ async def forwarder(event):
         reply_msg = event.message.reply_to_msg_id
 
         # cleaned_text = pasig(text)
-        cleaned_text = text
-        valid = bool(cleaned_text)
+        # cleaned_text = text
+        # valid = bool(cleaned_text)
+
+        valid = emanuelefilter(text)
+        text = transform_text(text)
         count = 0
         for cht in channel_output:
             try:
