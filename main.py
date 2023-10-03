@@ -45,7 +45,7 @@ async def forwarder(event):
         # valid = bool(cleaned_text)
 
         valid = emanuelefilter(text)
-        text = transform_text(text)
+        cleaned_text = transform_text(text)
         count = 0
         for cht in channel_output:
             try:

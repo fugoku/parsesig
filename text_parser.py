@@ -76,10 +76,8 @@ BUY:chart_with_upwards_trend:1.0877
 ### EB10 filters
 
 def emanuelefilter(text):
-
-    parser = re.search("(GBP|USD|EUR|NZD|CAD|JPY|AUD|TP+|SL+|Close+|pips|tp|sl)", text)
+    parser = re.search("(GBP|USD|EUR|NZD|CAD|JPY|AUD|TP+|SL+|Close+|pips|tp|sl|UK+|US+|SELL+|BUY+)", text)
     invalid = re.search("(OFFER|DISCOUNT|JOIN|TELEGRAM|DON'T MISS|MT4|24//7|EXPIRES|@+)", text)
-
     value = bool(parser)
     if invalid:
         value = False
@@ -89,17 +87,14 @@ def emanuelefilter(text):
 
 def transform_text(text):
     parser = re.search("(USD|EUR|NZD|CAD|JPY|AUD|CHF|GBP)", text)
-
     is_warning = bool(re.search("INVEST WITH CONSCIENCE", text))
     # https://www.tradingview.com/x/cehtMm4G/
     has_link = bool(re.search("(.com|www.tradingview.com|https)", text))
-
     if parser:
         if not is_warning:
             text = f"""
 {text}
 ..................................
-
 ⚫ INVEST WITH CONSCIENCE 
 ⚫ Don't invest more than you can afford
 ⚫ This signal does not constitute an investment advice, 
@@ -108,7 +103,6 @@ we are not responsible for money loss
         if has_link:
             link = re.search("(https[://w.\w]+)", text).group()
             text = text.replace(link, " ")
-
     return text
 
     
